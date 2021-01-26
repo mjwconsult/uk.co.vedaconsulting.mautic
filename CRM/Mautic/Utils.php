@@ -162,6 +162,7 @@ class CRM_Mautic_Utils {
    *
    * @param $groupIDs mixed array of CiviCRM group Ids to fetch data for; or empty to return ALL mapped groups.
    * @param $mauticSegmentId mixed Fetch details for a particular segment only, or null.
+   *
    * @return array keyed by CiviCRM group id whose values are arrays of details
    */
   public static function getGroupsToSync($groupIDs = [], $mauticSegmentId = NULL) {

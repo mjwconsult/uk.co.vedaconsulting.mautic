@@ -129,6 +129,10 @@ Typically, you'd create one or more rules with the *Mautic WebHook processed* tr
 
 Note, if you install CiviRules after the Mautic extension, go to *Administer > Mautic -> Connection* where you'll be able to register the Trigger, Condition and Action types.
 
+Mautic generates a lot of webhooks and we queue them in CiviCRM before processing using the `civicrm_mauticwebhook` table. They are added to that table as soon as they are received and then processed by the
+*Process Mautic Webhooks* scheduled job. This means they can take a few minutes to update in CiviCRM, though you can always trigger the job manually (using the `MauticWebHook.process` API) if you need it more quickly.
+The CiviRule trigger responds to `edit` events which are triggered when the job updates the table to add a `processed_date`.
+
 ### Condition: Mautic Webhook type
 Use this condition to select which Mautic trigger event types to process in the rule.
 Currently you will probably want to respond only to contact-related events.

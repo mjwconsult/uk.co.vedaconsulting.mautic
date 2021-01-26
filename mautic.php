@@ -158,7 +158,7 @@ function mautic_civicrm_validateForm($formName, &$fields, &$files, &$form, &$err
     }
     else {
       // We need to make sure that this is the only group for this segment.
-      $otherGroups = CRM_Mautic_Utils::getGroupsToSync([], $fields['mautic_segment'], TRUE);
+      $otherGroups = CRM_Mautic_Utils::getGroupsToSync([], $fields['mautic_segment']);
       $thisGroup = $form->getVar('_group');
       if ($thisGroup) {
         unset($otherGroups[$thisGroup->id]);

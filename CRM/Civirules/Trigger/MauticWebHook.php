@@ -3,6 +3,7 @@
 use CRM_Mautic_ExtensionUtil as E;
 
 class CRM_Civirules_Trigger_MauticWebHook extends CRM_Civirules_Trigger_Post {
+
   /**
    * This is a pseudo entity.
    * @var string
@@ -33,6 +34,7 @@ class CRM_Civirules_Trigger_MauticWebHook extends CRM_Civirules_Trigger_Post {
    * Return false if you do not need extra data input
    *
    * @param int $ruleId
+   *
    * @return bool|string
    */
   public function getExtraDataInputUrl($ruleId) {
@@ -46,22 +48,6 @@ class CRM_Civirules_Trigger_MauticWebHook extends CRM_Civirules_Trigger_Post {
    */
   public function getTriggerDescription() {
     return E::ts('Mautic WebHook processed');
-  }
-
-  /**
-   * Trigger a rule for this trigger
-   *
-   * @param $op
-   * @param $objectName
-   * @param $objectId
-   * @param $objectRef
-   */
-  public function triggerTrigger($op, $objectName, $objectId, $objectRef, $eventID) {
-    $triggerData = $this->getTriggerDataFromPost($op, $objectName, $objectId, $objectRef, $eventID);
-    if (isset($triggerData->getEntityData('mauticwebhook')['civirules_do_not_process'])) {
-      return;
-    }
-    CRM_Civirules_Engine::triggerRule($this, clone $triggerData);
   }
 
   /**
